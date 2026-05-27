@@ -61,6 +61,7 @@ Create three Google Sheets:
 
 - `workflows/` - Sanitized n8n JSON templates.
 - `docs/` - Detailed logic walkthroughs and technical fixes.
+- `assets/` - Screenshots and demo videos of the system in action.
 - `data/` - (Ignored) Local execution logs and sensitive state.
 
 ---

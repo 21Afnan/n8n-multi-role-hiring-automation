@@ -1,0 +1,13 @@
+# Credentials and Secrets
+client_secret_*.json
+pass.txt
+.env
+workflows/AfnanShoukat_HiringAutomation.json
+
+# n8n data
+data/
+n8n_Developer_Assignment .pdf
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,47 +1,85 @@
-# Walkthrough: Multi-Role Hiring Automation System
-**By:** Afnan Shoukat
-**Role:** n8n Automation Developer
+# Comprehensive Walkthrough: Multi-Role Hiring Automation System
+**Developer:** Afnan Shoukat
+**Tools Used:** n8n, Python, Google Workspace, LLMs (Gemini/Groq)
 
 ---
 
-## 1. How the System Works
-
-This system is built to handle the entire hiring process automatically. It is split into two main parts to keep everything organized and reliable.
-
-### Part 1: Finding & Scoring Candidates
-- **Reading Data:** The system automatically checks for new applications from two different Google Sheets (one for **Software Engineers** and one for **BDMs**).
-- **Cleaning Data:** Since different forms ask different questions, a Python script cleans and standardizes the info into one single format. 
-- **No Duplicates:** The system gives every candidate a unique ID based on their email. If someone applies twice, it just updates their info instead of creating a new row.
-- **AI Specialist:** It "reads" the resume PDF using AI. Most importantly, it uses different rules for each role—a developer is judged on tech skills, while a BDM is judged on sales targets.
-- **Saving Results:** All the AI scores and summaries are saved into one **Master Sheet**.
-
-### Part 2: Sending Emails & Scheduling
-- **Batch Processing:** Every few hours, the system checks the Master Sheet for candidates who haven't been contacted yet.
-- **Automatic Emails:**
-    - **Top Candidates (Strong):** It automatically creates a **Google Calendar** meeting and sends them an invitation email with the link.
-    - **Medium Match (Average):** It alerts the **Hiring Manager** to take a manual look.
-    - **Not a Match (Weak):** it sends a professional, polite rejection email automatically.
+## 🌟 Executive Summary
+This system is an end-to-end recruitment engine designed to eliminate manual resume screening. It automatically captures applications for multiple roles, standardizes the data using Python, evaluates resumes using Role-Specific AI Rubrics, and manages the communication lifecycle with candidates.
 
 ---
 
-## 2. Key Decisions
-
-- **Two Separate Steps:** I separated "Scoring" from "Emailing." This ensures that if the email server has a temporary issue, the AI screening doesn't stop working.
-- **Smart IDs:** By using a unique ID (email + role), the system never gets confused by duplicate applications.
-- **Role-Aware AI:** Instead of a generic check, the AI knows exactly what to look for in a developer vs. a salesperson.
+## 🖼️ High-Level Workflow
+![n8n Hiring Automation Workflow](../assets/workflow_logic.png)
+*(Note: Please ensure the image is saved as `workflow_logic.png` in the `assets/` folder for it to appear in the document.)*
 
 ---
 
-## 3. Assumptions & Limits
+## 🏗️ Technical Architecture & Roadmap
 
-- **Reading PDFs:** The system works best with standard PDF resumes. If a candidate uploads a low-quality photo of a resume, the AI might find it harder to read.
-- **Calendar Timing:** Currently, it schedules interviews for 3 days in the future. In a real scenario, this would be connected to a live calendar like Calendly.
+The system works like a "hub-and-spoke" model where **n8n** acts as the central controller connecting various technical layers.
+
+1.  **Ingestion Layer**: Takes applications from multiple Google Sheets (SWE and BDM).
+2.  **Standardization Layer**: A Python script cleans the data so it all follows the same format.
+3.  **Persistence Layer**: A "Master Sheet" acts as the database for all candidates.
+4.  **Intelligence Layer**: Different AI personalities (Rubrics) are used to score candidates.
+5.  **Synchronization Layer**: The system syncs back to original sheets to mark tasks as "Done."
 
 ---
 
-## 4. Handling Problems
+## 🔄 The Step-by-Step Workflow
 
-- **Missing Info:** If a candidate forgets to include their name or resume link, the system gracefully skips them and logs a note instead of crashing.
-- **AI Safety:** Sometimes AI output can be messy. I added a "safety" script that double-checks the AI's results and fixes any formatting errors before saving them to the sheet.
-- **Graceful Stop:** If there are no new applicants, the system simply stops and waits for the next scheduled run without doing unnecessary work.
+### 1. Multi-Source Ingestion
+The system is triggered on a schedule (e.g., every hour) to batch-process entries. It checks two specific sources:
+*   **Software Engineers (SWE)**
+*   **Business Development Managers (BDM)**
+Each incoming row is tagged with its role type before being merged into the processing stream.
+
+### 2. Intelligent Data Cleaning (Python Layer)
+I implemented a robust Python script to handle real-world data issues:
+*   **Data Validation:** It cleans extra spaces, fixes missing info, and handles null values.
+*   **Unique Candidate IDs:** It creates an ID by hashing the email and role. This prevents "Application Spam" (someone applying twice for the same job).
+*   **Resume Extraction:** It converts shared Google Drive links into "Direct Download IDs" so the system can pull the PDF programmatically.
+
+### 3. AI Resume Evaluation (The Brain)
+This is the most critical technical phase:
+*   **PDF Extraction:** The system downloads the resume directly from Google Drive and extracts the raw text.
+*   **Role-Specific Scoring:** Instead of a generic check, I programmed the AI with different "Hiring Personalities":
+    *   **For Engineers:** It evaluates tech stack depth, system design experience, and coding impact.
+    *   **For Sales Managers:** It evaluates revenue targets, client relationship management, and sales growth.
+*   **JSON Data Model:** The AI returns a structured score (0-100), classification (Strong/Average/Weak), and specific strengths/concerns.
+
+### 4. Results & Communication Strategy
+*   **Central Storage:** All information and AI insights are saved to the **Master Sheet**.
+*   **Feedback Loop:** The system returns to the *original* form sheets and marks processed candidates as "Done" to ensure they aren't screened twice.
+*   **Smart Emailing:** To avoid confusion, I **removed the person from the calendar invite** and used a dedicated **Custom Email node**. This ensures the candidate receives exactly one professional invitation formatted properly.
+
+---
+
+## ⚠️ Known Assumptions & Limitations
+
+To maintain reliability, the system follows these specific rules:
+
+1.  **PDF Format Only:** The text extraction is optimized for `.pdf` resumes. Photos or Word docs are flagged as "Screening Errors" for manual check.
+2.  **Google Drive Access:** The resume link must be "viewable" so the API can reach the file.
+3.  **Link Format:** The script is designed to parse Google Drive URLs. Files on external clouds (Dropbox, etc.) need an update to be supported.
+4.  **AI Tone:** While the scoring (0-100) is consistent, the generated summaries might vary slightly in wording as is common with LLMs.
+
+---
+
+## 🚀 Future Roadmap
+*   **LLM-Personalized Outreach:** I plan to upgrade the static templates to "AI-written" emails that mention specific highlights from a candidate's resume.
+*   **Multi-Format Support:** Adding support for OCR to read image-based resumes and Word documents.
+
+---
+
+## 🛠️ Reliability & Error Handling
+*   **Safe Skips:** If a mandatory field (like an email) is missing, the system logs the error and moves to the next person instead of crashing.
+*   **Data Validation:** A final script double-checks the AI's answer format to ensure it "fits" the Master Sheet perfectly before saving.
+
+**Summary**: This system transforms a giant pile of resumes into a clean, ranked database, allowing recruiters to focus only on the top 1% of talent.
+
+
+
+
 

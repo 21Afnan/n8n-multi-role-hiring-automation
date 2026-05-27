@@ -72,7 +72,7 @@ Create three Google Sheets:
 *n8n Automation Expert | AI Integrations Specialist*
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AfnanShoukat)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/afnan-shoukat-742780216/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]([https://www.linkedin.com/in/afnan-shoukat-742780216/](https://linkedin.com/in/afnanshoukat))
 
 ---
 *Note: This repository excludes all private credentials and production keys for security.*

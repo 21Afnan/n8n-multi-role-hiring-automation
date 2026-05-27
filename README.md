@@ -51,7 +51,7 @@ Create three Google Sheets:
 3.  **Master Candidates** (Single source of truth)
 
 ### 2. Configure n8n
-1.  Import [workflows/AfnanShoukat_HiringAutomation_template.json](workflows/AfnanShoukat_HiringAutomation_template.json).
+1.  Import [workflows/21Afnan_HiringAutomation_template.json](workflows/21Afnan_HiringAutomation_template.json).
 2.  Connect your Google Workspace & AI Provider credentials.
 3.  Replace placeholder IDs (e.g., `YOUR_SWE_FORM_RESPONSES_SHEET_ID`) with your own.
 

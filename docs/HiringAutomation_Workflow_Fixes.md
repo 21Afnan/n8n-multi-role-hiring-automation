@@ -1,6 +1,6 @@
 # Hiring Automation Workflow Walkthrough
 
-This document explains the full hiring automation system in `hiring-automation-workflows.json`. The export contains two logical workflows on one n8n canvas:
+This document explains the full hiring automation system in `21Afnan_HiringAutomation_template.json`. The export contains two logical workflows on one n8n canvas:
 
 1. **Workflow 1 - Screening Pipeline**
 2. **Workflow 2 - Communication Pipeline**
@@ -31,7 +31,7 @@ The core idea is simple: Workflow 1 reads new candidates, standardizes the data,
 
 ## Files
 
-- `hiring-automation-workflows.json`: final n8n workflow export.
+- `21Afnan_HiringAutomation_template.json`: final n8n workflow export.
 - `HiringAutomation_Workflow_Fixes.md`: this explanation document.
 - Test resumes: `CV_SWE_Average.pdf`, `CV_SWE_Weak.pdf`, `CV_BDM_Average.pdf`, `CV_BDM_Weak.pdf`, plus sample strong resumes.
 
@@ -654,7 +654,7 @@ Average candidates do not get a candidate email directly. They go to hiring mana
 `Send Average Email` sends a review email to:
 
 ```text
-afnanshoukat35@gmial.com
+afnanshoukat35@gmail.com
 ```
 
 Note: This is written exactly as configured. If it is a typo, change it to:

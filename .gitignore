@@ -2,7 +2,7 @@
 client_secret_*.json
 pass.txt
 .env
-workflows/AfnanShoukat_HiringAutomation.json
+workflows/21Afnan_HiringAutomation.json
 
 # n8n data
 data/

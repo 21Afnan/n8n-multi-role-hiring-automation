@@ -1327,11 +1327,14 @@
           "value": "YOUR_EMAIL@example.com",
           "mode": "id"
         },
-        "start": "={{ $now.plus({days: 3}).set({hour: 10, minute: 0, second: 0, millisecond: 0}).plus({minutes: (Number($json.row_number || 0) % 8) * 30}).toISO() }}",
-        "end": "={{ $now.plus({days: 3}).set({hour: 10, minute: 30, second: 0, millisecond: 0}).plus({minutes: (Number($json.row_number || 0) % 8) * 30}).toISO() }}",
+        "start": "={{ (() => { const timezone = 'Asia/Karachi'; const slotsPerDay = 4; const slotMinutes = 30; const loopIndex = $('Loop Over Items').context?.currentRunIndex; const itemIndex = Number(loopIndex ?? $itemIndex ?? 0); const businessDaysToAdd = Math.floor(itemIndex / slotsPerDay); const slotInDay = itemIndex % slotsPerDay; let date = $now.setZone(timezone).set({ hour: 14, minute: 0, second: 0, millisecond: 0 }).plus({ days: 1 }); while (date.weekday > 5) date = date.plus({ days: 1 }); let added = 0; while (added < businessDaysToAdd) { date = date.plus({ days: 1 }); if (date.weekday <= 5) added++; } return date.plus({ minutes: slotInDay * slotMinutes }).toISO(); })() }}",
+        "end": "={{ (() => { const timezone = 'Asia/Karachi'; const slotsPerDay = 4; const slotMinutes = 30; const loopIndex = $('Loop Over Items').context?.currentRunIndex; const itemIndex = Number(loopIndex ?? $itemIndex ?? 0); const businessDaysToAdd = Math.floor(itemIndex / slotsPerDay); const slotInDay = itemIndex % slotsPerDay; let date = $now.setZone(timezone).set({ hour: 14, minute: 30, second: 0, millisecond: 0 }).plus({ days: 1 }); while (date.weekday > 5) date = date.plus({ days: 1 }); let added = 0; while (added < businessDaysToAdd) { date = date.plus({ days: 1 }); if (date.weekday <= 5) added++; } return date.plus({ minutes: slotInDay * slotMinutes }).toISO(); })() }}",
         "useDefaultReminders": false,
         "additionalFields": {
-          "attendees": []
+          "attendees": [
+            "={{ $json.email }}"
+          ],
+          "sendUpdates": "all"
         }
       },
       "type": "n8n-nodes-base.googleCalendar",
@@ -1351,7 +1354,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const event = $input.first().json;\nconst candidate = $('Loop Over Items').item.json;\nconst name = candidate.name || 'Candidate';\nconst role = candidate.role || 'the role';\nconst email = candidate.email || '';\nconst start = event.start?.dateTime || event.start?.date || '';\nconst calendarEventLink = event.htmlLink || event.hangoutLink || event.conferenceData?.entryPoints?.[0]?.uri || '';\nconst when = start ? new Date(start).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' }) : 'the scheduled time';\nconst subject = `Interview Confirmation - ${role} Role at Trilles AI`;\nconst email_body = `<p>Dear ${name},</p><p>Congratulations, and thank you sincerely for your interest in Trilles AI and for taking the time to apply for the <strong>${role}</strong> position.</p><p>Our hiring team has carefully reviewed your resume. We are genuinely impressed with your background and experience, and we are pleased to move you forward.</p><p>Your interview is scheduled for <strong>${when}</strong>. A calendar invitation has been sent to your email with the interview details.</p><p>Please join on time using the calendar invitation.</p><p>We look forward to learning more about you and wish you the best of luck.</p><p>Warm Regards,<br><strong>Hiring Team</strong><br>Trilles AI<br>www.trillesai.com</p>`;\nreturn [{ json: { ...candidate, calendar_event_link: calendarEventLink, output: { subject, email_body, calendar_event_link: calendarEventLink, candidate_email: email } } }];"
+        "jsCode": "const event = $input.first().json;\nconst candidate = $('Loop Over Items').item.json;\nconst name = candidate.name || 'Candidate';\nconst role = candidate.role || 'the role';\nconst email = candidate.email || '';\nconst start = event.start?.dateTime || event.start?.date || '';\nconst calendarEventLink = event.htmlLink || event.hangoutLink || event.conferenceData?.entryPoints?.[0]?.uri || '';\nconst when = start ? new Date(start).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Karachi' }) : 'the scheduled time';\nconst subject = `Interview Confirmation - ${role} Role at Trilles AI`;\nconst email_body = `<p>Dear ${name},</p><p>Congratulations, and thank you sincerely for your interest in Trilles AI and for taking the time to apply for the <strong>${role}</strong> position.</p><p>Our hiring team has carefully reviewed your resume. We are genuinely impressed with your background and experience, and we are pleased to move you forward.</p><p>Your interview is scheduled for <strong>${when}</strong>. A calendar invitation has been sent to your email with the interview details.</p><p>Please join on time using the calendar invitation.</p><p>We look forward to learning more about you and wish you the best of luck.</p><p>Warm Regards,<br><strong>Hiring Team</strong><br>Trilles AI<br>www.trillesai.com</p>`;\nreturn [{ json: { ...candidate, calendar_event_link: calendarEventLink, output: { subject, email_body, calendar_event_link: calendarEventLink, candidate_email: email } } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1461,7 +1464,7 @@
           "value": {
             "Candidate ID": "={{ $('Loop Over Items').item.json['Candidate ID'] }}",
             "contacted": "YES",
-            "calendar_event_link": "={{ $('Build Interview Email').item.json.calendar_event_link }}\"",
+            "calendar_event_link": "={{ $('Build Interview Email').item.json.calendar_event_link }}",
             "status": "interview_scheduled"
           },
           "matchingColumns": [

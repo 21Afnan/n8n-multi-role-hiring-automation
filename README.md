@@ -65,6 +65,36 @@ graph LR
 
 ---
 
+## Main Code Nodes
+
+The workflow uses a few Code nodes for custom logic:
+
+| Code Node | Purpose |
+| :--- | :--- |
+| Validate & Deduplicate Candidates | Cleans incoming rows, validates required fields, extracts Drive file IDs, generates Candidate IDs, and skips duplicates |
+| Format Stop Reason | Returns a clear stop message when no valid new candidates are found |
+| Parse AI Screening Result | Cleans and validates AI output, forces score-based classification, and prepares sheet updates |
+| Build Interview Email | Builds the interview confirmation email from the calendar event and candidate data |
+
+Python is used for heavier data logic such as validation, deduplication, hashing, and AI JSON parsing. JavaScript is used for smaller n8n-specific tasks such as reading node outputs, formatting calendar data, and building email payloads.
+
+---
+
+## Workflow Status Values
+
+The `workflow_status` field tracks the current workflow stage or result.
+
+| Value | Meaning |
+| :--- | :--- |
+| `NEW` | Candidate passed validation and can move forward |
+| `NO_NEW_CANDIDATES` | No valid new candidates were found |
+| `SCREENED` | AI screening completed successfully |
+| `ERROR` | AI screening failed or returned invalid output |
+
+`workflow_status` is different from `status`. `workflow_status` describes the workflow stage, while `status` describes the candidate's saved hiring state, such as `pending`, `screened`, `screening_error`, `interview_scheduled`, `manual_review_notified`, or `rejected`.
+
+---
+
 ## Interview Scheduling
 
 Strong candidates are scheduled automatically using a realistic interview window:
@@ -170,4 +200,3 @@ docs/Workflow_Walkthrough_Script.md
 ## Security Note
 
 Production credentials, OAuth tokens, and private API keys should never be committed to this repository.
-

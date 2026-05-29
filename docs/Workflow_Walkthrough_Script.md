@@ -299,6 +299,43 @@ It stores:
 
 This makes the hiring process easier to audit because every candidate has one main record.
 
+### Workflow Status Values
+
+The `workflow_status` field shows the current workflow stage or result for a candidate.
+
+In this workflow, the main `workflow_status` values are:
+
+```text
+NEW
+NO_NEW_CANDIDATES
+SCREENED
+ERROR
+```
+
+`NEW` means the candidate passed validation and can move forward in the workflow.
+
+`NO_NEW_CANDIDATES` means no valid new candidates were found, so the workflow can stop early.
+
+`SCREENED` means AI screening completed successfully.
+
+`ERROR` means AI screening failed or the workflow did not receive valid AI output.
+
+This is different from the `status` field. The `workflow_status` field explains the workflow stage, while the `status` field explains the candidate's saved hiring status.
+
+For example:
+
+```text
+workflow_status = SCREENED
+status = screened
+```
+
+Another example:
+
+```text
+workflow_status = ERROR
+status = screening_error
+```
+
 ## Step 9: Resume Download and Text Extraction
 
 After the candidate is saved, the workflow downloads the resume from Google Drive.

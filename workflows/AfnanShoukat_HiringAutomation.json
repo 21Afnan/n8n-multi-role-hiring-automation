@@ -1,0 +1,2005 @@
+{
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -496,
+        224
+      ],
+      "id": "995841a5-cd0a-4c41-a367-6629aeb6bfec",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA",
+          "mode": "list",
+          "cachedResultName": "Software Engineer Application Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2086084838,
+          "mode": "list",
+          "cachedResultName": "Form responses 2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA/edit#gid=2086084838"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -144,
+        208
+      ],
+      "id": "848935b2-0e6b-4069-a7b8-326481c7027b",
+      "name": "get SWE Applications",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4",
+          "mode": "list",
+          "cachedResultName": "Business Development Manager Application Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 794491823,
+          "mode": "list",
+          "cachedResultName": "Form responses 2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4/edit#gid=794491823"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -144,
+        448
+      ],
+      "id": "1aceda1e-791f-4c11-be08-88f6ee548216",
+      "name": "Get BDM Applications",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "role-swe",
+              "name": "role",
+              "value": "SWE",
+              "type": "string"
+            },
+            {
+              "id": "source-sheet-swe",
+              "name": "source_sheet",
+              "value": "SWE",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        208
+      ],
+      "id": "474812f9-1765-472b-a4f4-33e9af249225",
+      "name": "ROLE-SWE"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "role-bdm",
+              "name": "role",
+              "value": "BDM",
+              "type": "string"
+            },
+            {
+              "id": "source-sheet-bdm",
+              "name": "source_sheet",
+              "value": "BDM",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        448
+      ],
+      "id": "05300ec4-36ed-4f72-a505-d375d576b9ac",
+      "name": "ROLE-BDM"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        400,
+        352
+      ],
+      "id": "42cf8a2c-8376-4b37-bf76-3d79d7a7761d",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -128,
+        -48
+      ],
+      "id": "fe8c644c-3ac4-4f10-991a-ad471a23514a",
+      "name": "Master_Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eae0598e-a5fb-4bb7-9a9e-4221378f5567",
+              "leftValue": "={{$json[\"workflow_status\"]}}",
+              "rightValue": "NEW",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        144
+      ],
+      "id": "6c84b2b9-8547-4249-bfbd-b2662b00a299",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "Candidate ID": "={{$json[\"Candidate ID\"]}}"
+          },
+          "matchingColumns": [
+            "Candidate ID"
+          ],
+          "schema": [
+            {
+              "id": "Candidate ID",
+              "displayName": "Candidate ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "role",
+              "displayName": "role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "experience",
+              "displayName": "experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_score",
+              "displayName": "ai_score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_classification",
+              "displayName": "ai_classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_summary",
+              "displayName": "ai_summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_strengths",
+              "displayName": "ai_strengths",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_concerns",
+              "displayName": "ai_concerns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "interview_recommended",
+              "displayName": "interview_recommended",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contacted",
+              "displayName": "contacted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_link",
+              "displayName": "calendar_event_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "extra_link",
+              "displayName": "extra_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "resume_url",
+              "displayName": "resume_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "drive_file_id",
+              "displayName": "drive_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "workflow_status",
+              "displayName": "workflow_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source_sheet",
+              "displayName": "source_sheet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source_row_number",
+              "displayName": "source_row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "error_note",
+              "displayName": "error_note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ingested_at",
+              "displayName": "ingested_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1120,
+        128
+      ],
+      "id": "e22f96b1-4ab9-4213-873a-3f0c03f8e52d",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json[\"drive_file_id\"] }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1376,
+        128
+      ],
+      "id": "6db7c2df-de03-4150-8013-68e30cde5091",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "KBm1Mn70FsowSCd3",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {
+          "keepSource": "both"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        128
+      ],
+      "id": "bd6c7fa3-6c21-4609-9b4b-19680bcf0919",
+      "name": "Extract from File",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a strict, fair, and consistent hiring evaluator for Trilles AI.\n\nYour job is to evaluate candidates using the same rubric every time. You must be conservative, evidence-based, and role-specific.\n\nCRITICAL OUTPUT RULES:\n- Return ONLY one raw JSON object.\n- Do NOT return a JSON string.\n- Do NOT wrap the JSON object in quotes.\n- Do NOT escape newlines.\n- Do NOT include markdown.\n- Do NOT include code fences.\n- Do NOT include explanations outside JSON.\n- Do NOT include reasoning.\n- Do NOT include <think> tags.\n- The first character of your response must be { and the last character must be }.\n\nImportant behavior rules:\n- Evaluate ONLY from the resume text and candidate metadata below.\n- Do not browse.\n- Do not invent facts.\n- Do not assume unstated experience.\n- Do not reward vague claims without evidence.\n- Do not change scoring randomly between runs.\n- Similar evidence must receive a similar score.\n- If evidence is missing, count it as a concern.\n- Ignore candidate name, gender, email, location, university prestige, and writing style except where directly relevant to role evidence.\n- Use measurable achievements, scope, ownership, tools, and role relevance as the main scoring signals.\n\nCandidate metadata:\n- Candidate ID: {{ $json[\"Candidate ID\"] }}\n- Name: {{ $json.name }}\n- Email: {{ $json.email }}\n- Role: {{ $json.role }}\n- Form experience field: {{ $json.experience }}\n- Extra link: {{ $json.extra_link }}\n\nRole definitions:\n- SWE = Software Engineer\n- BDM = Business Development Manager\n\nIf resume text is empty, unreadable, corrupted, irrelevant, or clearly not a resume:\n- score: 0-20\n- classification: weak\n- interview_recommended: false\n- summary must explain the data issue\n- concerns must include the missing/unusable resume evidence\n\nGlobal score bands:\n- 85-100 = exceptional strong\n- 75-84 = strong\n- 50-74 = average\n- 0-49 = weak\n\nClassification must match score exactly:\n- 75-100 = strong\n- 50-74 = average\n- 0-49 = weak\n\nInterview recommendation must match classification:\n- strong = true\n- average = false\n- weak = false\n\nSWE evaluation rubric:\nScore SWE candidates using these evidence categories:\n1. Role-relevant production experience\n2. Programming languages and frameworks\n3. Backend/frontend/API/database experience\n4. System design, scale, architecture, or ownership\n5. Cloud/devops/infrastructure experience\n6. Testing, debugging, reliability, performance\n7. Projects, GitHub, portfolio, or open-source evidence\n8. Measurable impact and leadership\n\nSWE scoring calibration:\n- 90-100: Exceptional senior/staff-level SWE. Usually 6+ years, strong ownership of large-scale systems, distributed architecture, cloud-native systems, databases, APIs, testing/reliability, measurable impact, and leadership.\n- 80-89: Strong senior SWE. Usually 5+ years, clear production ownership, scalable systems, strong stack depth, measurable impact, and some leadership.\n- 75-79: Interview-worthy SWE. Strong evidence overall but with some gaps in scale, architecture, leadership, or cloud depth.\n- 65-74: Solid average SWE. Relevant production experience and useful skills, but missing senior-level system design, large-scale ownership, advanced cloud, or deep architecture evidence.\n- 50-64: Lower average SWE. Some relevant engineering experience but limited scope, weak measurable impact, junior/mid-level evidence, or unclear ownership.\n- 0-49: Weak SWE. Insufficient production evidence, beginner-level skills, irrelevant experience, missing portfolio/resume details, or no clear engineering impact.\n\nSWE calibration examples:\n- 2-3 years Django/API experience, testing, and performance improvement but no large-scale system design or advanced cloud: score 60-72, classification average.\n- Basic Python/web skills with no production impact or portfolio: score 20-39, classification weak.\n- 7+ years with distributed systems, cloud architecture, high-scale APIs, measurable impact, and leadership: score 85-95, classification strong.\n\nBDM evaluation rubric:\nScore BDM candidates using these evidence categories:\n1. Sales experience and role relevance\n2. Quota/revenue ownership\n3. Target achievement or measurable sales impact\n4. Lead generation and pipeline management\n5. Client relationship management\n6. Negotiation and communication evidence\n7. CRM usage\n8. Proposal writing, account growth, industry fit\n\nBDM scoring calibration:\n- 90-100: Exceptional BDM. Repeatedly exceeded targets, major revenue/new business impact, strong client ownership, CRM discipline, negotiation evidence, and clear measurable outcomes.\n- 80-89: Strong BDM. Clear sales achievements, target ownership, new business generation, CRM usage, and strong communication/client handling.\n- 75-79: Interview-worthy BDM. Good sales evidence but minor gaps in metrics, ownership depth, or industry detail.\n- 65-74: Solid average BDM. Relevant sales experience but limited measurable outcomes, unclear quota ownership, or moderate CRM/client evidence.\n- 50-64: Lower average BDM. Basic sales exposure but weak metrics, limited ownership, or unclear impact.\n- 0-49: Weak BDM. No measurable sales outcomes, no quota/revenue evidence, irrelevant experience, or insufficient detail.\n\nBDM calibration examples:\n- Clear revenue targets exceeded, CRM usage, client ownership, and measurable new business: score 80-90, classification strong.\n- Basic sales experience with no measurable outcomes or quota ownership: score 20-39, classification weak.\n- Some sales/client experience with limited metrics: score 55-70, classification average.\n\nScoring discipline:\n- Do not give strong only because the resume sounds polished.\n- Do not give strong if the key senior/ownership evidence is missing.\n- Do not give weak if there is clear role-relevant production or sales evidence.\n- If score and classification conflict, fix classification to match score.\n- If interview_recommended conflicts with classification, fix interview_recommended to match classification.\n- Prefer the lower score when evidence is unclear.\n- Keep scores stable and repeatable for the same evidence.\n\nReturn exactly this JSON structure, with dynamic values based on the candidate evidence:\n\n{\n  \"score\": 65,\n  \"classification\": \"average\",\n  \"summary\": \"2-3 concise sentences based only on evidence.\",\n  \"key_strengths\": [\n    \"specific evidence-backed strength 1\",\n    \"specific evidence-backed strength 2\"\n  ],\n  \"concerns\": [\n    \"specific evidence-backed concern or missing evidence 1\",\n    \"specific evidence-backed concern or missing evidence 2\"\n  ],\n  \"interview_recommended\": false\n}\n\nThe JSON above is only a format example. Do not copy its values.\n\nRequired output constraints:\n- score must be a number, not a string.\n- classification must be exactly one of: strong, average, weak.\n- summary must be a string.\n- key_strengths must be an array of strings.\n- concerns must be an array of strings.\n- interview_recommended must be boolean true or false.\n- Output must be valid raw JSON only.\n\nResume text:\n{{ $json.text || \"\" }}",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "batching": {
+          "batchSize": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1856,
+        128
+      ],
+      "id": "6f4bab74-67fa-42fb-8dce-1deaaf6caaed",
+      "name": "Basic LLM Chain",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        320
+      ],
+      "id": "8ed3dc59-4ced-4526-8d46-4ce6029f6f2a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JqTQrJAm9CzzTeOU",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama-3.1-8b-instant",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        336
+      ],
+      "id": "82ce622c-16e3-4740-b5cb-9e097a3594ff",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "gKxFumf59Afc7s7G",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Candidate ID"
+          ],
+          "schema": [
+            {
+              "id": "Candidate ID",
+              "displayName": "Candidate ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "role",
+              "displayName": "role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "experience",
+              "displayName": "experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_score",
+              "displayName": "ai_score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_classification",
+              "displayName": "ai_classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_summary",
+              "displayName": "ai_summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_strengths",
+              "displayName": "ai_strengths",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_concerns",
+              "displayName": "ai_concerns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "interview_recommended",
+              "displayName": "interview_recommended",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contacted",
+              "displayName": "contacted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_link",
+              "displayName": "calendar_event_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "extra_link",
+              "displayName": "extra_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "resume_url",
+              "displayName": "resume_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "drive_file_id",
+              "displayName": "drive_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "workflow_status",
+              "displayName": "workflow_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source_sheet",
+              "displayName": "source_sheet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source_row_number",
+              "displayName": "source_row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "error_note",
+              "displayName": "error_note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ingested_at",
+              "displayName": "ingested_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2352,
+        128
+      ],
+      "id": "a1e7e0ae-4422-4d8e-ba55-5a4f88bbb915",
+      "name": "Updation in Master Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "source-swe",
+                    "leftValue": "={{ $('Parse AI Screening Result').item.json['source_sheet'] }}",
+                    "rightValue": "SWE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "id": "source-row-present",
+                    "leftValue": "={{ String($('Parse AI Screening Result').item.json['source_row_number'] || '').trim() }}",
+                    "rightValue": "BDM",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "source-bdm",
+                    "leftValue": "={{ $('Parse AI Screening Result').item.json['source_sheet'] }}",
+                    "rightValue": "BDM",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "id": "source-row-present",
+                    "leftValue": "={{ String($('Parse AI Screening Result').item.json['source_row_number'] || '').trim() }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2576,
+        128
+      ],
+      "id": "5798d230-df3f-4ab5-9308-1af420d713ec",
+      "name": "Switch Source Sheet"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA",
+          "mode": "list",
+          "cachedResultName": "Software Engineer Application Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2086084838,
+          "mode": "list",
+          "cachedResultName": "Form responses 2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/134SebLOJVUmYxmMAfavfLKS6QHZeixwMnhyYbipkPLA/edit#gid=2086084838"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Parse AI Screening Result').item.json['source_row_number'] }}",
+            "processed": "TRUE"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processed",
+              "displayName": "processed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2752,
+        -48
+      ],
+      "id": "b1b1d8a2-0c49-4e75-b1d1-c71d730910ae",
+      "name": "Mark SWE Source Processed",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4",
+          "mode": "list",
+          "cachedResultName": "Business Development Manager Application Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 794491823,
+          "mode": "list",
+          "cachedResultName": "Form responses 2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i866uU3uulajBw-siAuZydUkoJV8zZf4D1npgd986L4/edit#gid=794491823"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Parse AI Screening Result').item.json['source_row_number'] }}",
+            "processed": "TRUE"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processed",
+              "displayName": "processed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2768,
+        288
+      ],
+      "id": "d5b2e485-f762-48fb-b142-6bd5aaf16d31",
+      "name": "Mark BDM Source Processed",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        1056
+      ],
+      "id": "70db0639-68e8-43a1-9834-2675aad9ec6c",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        1056
+      ],
+      "id": "b3ff4ff7-df35-4456-874c-925b3e0cb983",
+      "name": "Master-Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e80e90b9-e8a0-42cc-8387-7a017bf3e7c4",
+              "leftValue": "={{ String($json['status'] || '').trim().toLowerCase() }}",
+              "rightValue": "screened",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "4a2deedd-1b55-402e-a2b5-82efcac496b9",
+              "leftValue": "={{ String($json['contacted'] || 'NO').trim().toUpperCase() }}",
+              "rightValue": "NO",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        1056
+      ],
+      "id": "3166e043-e763-4bf1-be75-d7d4cb0504e5",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        704,
+        1040
+      ],
+      "id": "de7b30bc-8fc2-4c3f-a8d0-322473f6e0da",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ String($json['ai_classification'] || '').trim().toLowerCase() }}",
+                    "rightValue": "strong",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0465d8c0-4ce1-4b52-802a-c1fe330e9696"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3b1285c3-04db-46cc-8a50-f16bf56e339d",
+                    "leftValue": "={{ String($json['ai_classification'] || '').trim().toLowerCase() }}",
+                    "rightValue": "weak",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1085a206-6de0-4d06-a8e9-923a1c2a8921",
+                    "leftValue": "={{ String($json['ai_classification'] || '').trim().toLowerCase() }}",
+                    "rightValue": "average",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        1040
+      ],
+      "id": "167a57fb-66d7-4415-be8c-03cfb303340a",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "afnanshoukat011@gmail.com",
+          "mode": "id"
+        },
+        "start": "={{ (() => { const timezone = 'Asia/Karachi'; const slotsPerDay = 4; const slotMinutes = 30; const loopIndex = $('Loop Over Items').context?.currentRunIndex; const itemIndex = Number(loopIndex ?? $itemIndex ?? 0); const businessDaysToAdd = Math.floor(itemIndex / slotsPerDay); const slotInDay = itemIndex % slotsPerDay; let date = $now.setZone(timezone).set({ hour: 14, minute: 0, second: 0, millisecond: 0 }).plus({ days: 1 }); while (date.weekday > 5) date = date.plus({ days: 1 }); let added = 0; while (added < businessDaysToAdd) { date = date.plus({ days: 1 }); if (date.weekday <= 5) added++; } return date.plus({ minutes: slotInDay * slotMinutes }).toISO(); })() }}",
+        "end": "={{ (() => { const timezone = 'Asia/Karachi'; const slotsPerDay = 4; const slotMinutes = 30; const loopIndex = $('Loop Over Items').context?.currentRunIndex; const itemIndex = Number(loopIndex ?? $itemIndex ?? 0); const businessDaysToAdd = Math.floor(itemIndex / slotsPerDay); const slotInDay = itemIndex % slotsPerDay; let date = $now.setZone(timezone).set({ hour: 14, minute: 30, second: 0, millisecond: 0 }).plus({ days: 1 }); while (date.weekday > 5) date = date.plus({ days: 1 }); let added = 0; while (added < businessDaysToAdd) { date = date.plus({ days: 1 }); if (date.weekday <= 5) added++; } return date.plus({ minutes: slotInDay * slotMinutes }).toISO(); })() }}",
+        "useDefaultReminders": false,
+        "additionalFields": {
+          "attendees": [
+            "={{ $json.email }}"
+          ],
+          "sendUpdates": "all"
+        },
+        "remindersUi": {
+          "remindersValues": [
+            {
+              "method": "email",
+              "minutes": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1168,
+        896
+      ],
+      "id": "258ffacb-c366-43b0-8419-f89efdad37a2",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "aSzVDAQ0TuBOprj9",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const event = $input.first().json;\nconst candidate = $('Loop Over Items').item.json;\nconst name = candidate.name || 'Candidate';\nconst role = candidate.role || 'the role';\nconst email = candidate.email || '';\nconst start = event.start?.dateTime || event.start?.date || '';\nconst calendarEventLink = event.htmlLink || event.hangoutLink || event.conferenceData?.entryPoints?.[0]?.uri || '';\nconst when = start ? new Date(start).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Karachi' }) : 'the scheduled time';\nconst subject = `Interview Confirmation - ${role} Role`;\nconst email_body = `<p>Dear ${name},</p><p>Congratulations, and thank you sincerely for your interest and for taking the time to apply for the <strong>${role}</strong> position.</p><p>Our hiring team has carefully reviewed your resume. We are genuinely impressed with your background and experience, and we are pleased to move you forward.</p><p>Your interview is scheduled for <strong>${when}</strong>. A calendar invitation has been sent to your email with the interview details.</p><p>Please join on time using the calendar invitation.</p><p>We look forward to learning more about you and wish you the best of luck.</p><p>Warm Regards,<br><strong>Hiring Team</strong></p>`;\nreturn [{ json: { ...candidate, calendar_event_link: calendarEventLink, output: { subject, email_body, calendar_event_link: calendarEventLink, candidate_email: email } } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        896
+      ],
+      "id": "9f08f0c0-a3e0-4010-be38-f0efdd9d9b69",
+      "name": "Build Interview Email",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.output.candidate_email }}",
+        "subject": "={{ $json.output.subject }}",
+        "message": "={{ $json.output.email_body }}",
+        "options": {
+          "ccList": "afnanshoukat011@gmail.com",
+          "senderName": "Hiring Team"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1664,
+        896
+      ],
+      "id": "67805e27-65fc-43a1-acd2-c790139fe36b",
+      "name": "Send Interview Email",
+      "webhookId": "67a9051e-f088-4316-a62a-3e2a7bf95b86",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NpA4OV9rrj2vn79",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "afnanshoukat35@gmail.com",
+        "subject": "=Hiring Manager Review Needed - {{ $json[\"name\"] }} ({{ $json[\"role\"] }})",
+        "message": "=<p>Dear Hiring Manager,</p>\n\n<p>A candidate requires your manual review.</p>\n\n<p>\n  <strong>Name:</strong> {{ $json[\"name\"] }}<br>\n  <strong>Role:</strong> {{ $json[\"role\"] }}<br>\n  <strong>Email:</strong> {{ $json[\"email\"] }}<br>\n  <strong>AI Score:</strong> {{ $json[\"ai_score\"] }}<br>\n  <strong>Classification:</strong> {{ $json[\"ai_classification\"] }}<br>\n  <strong>Summary:</strong> {{ $json[\"ai_summary\"] }}<br>\n  <strong>Strengths:</strong> {{ $json[\"ai_strengths\"] }}<br>\n  <strong>Concerns:</strong> {{ $json[\"ai_concerns\"] }}\n</p>\n\n<p>Please review this candidate and decide whether they should move forward.</p>\n\n<p>Warm Regards,<br>\n<strong>Hiring Automation Team</strong></p>",
+        "options": {
+          "senderName": "Hiring Team"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1216,
+        1120
+      ],
+      "id": "54176ef2-51da-418b-80c3-835f0dfe44f1",
+      "webhookId": "avg-webhook-id-123456789012",
+      "name": "Send Average Email",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NpA4OV9rrj2vn79",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json[\"email\"] }}",
+        "subject": "=Your Application to Trilles AI - {{ $json[\"role\"] }} Role",
+        "message": "=<p>Dear {{ $json[\"name\"] }},</p>\n\n<p>Thank you sincerely for your interest and for taking the time to apply for the <strong>{{ $json[\"role\"] }}</strong> position.</p>\n\n<p>After carefully reviewing your application and resume, we regret to inform you that we will not be moving forward with your application at this time. This was a difficult decision, as we received many strong applications.</p>\n\n<p>We truly appreciate the effort you put into your application and encourage you to keep developing your skills. We would be happy to consider your application again in the future.</p>\n\n<p>We wish you all the best in your career journey.</p>\n\n<p>Warm Regards,<br>\n<strong>Hiring Team</strong></p>",
+        "options": {
+          "senderName": "Hiring Team"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1216,
+        1328
+      ],
+      "id": "4984e1f2-9979-4413-a682-10b15bb76830",
+      "webhookId": "weak-webhook-id-123456789012",
+      "name": "Send Rejection Email",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NpA4OV9rrj2vn79",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Candidate ID": "={{ $('Loop Over Items').item.json['Candidate ID'] }}",
+            "contacted": "YES",
+            "calendar_event_link": "={{ $('Build Interview Email').item.json.calendar_event_link }}",
+            "status": "interview_scheduled"
+          },
+          "matchingColumns": [
+            "Candidate ID"
+          ],
+          "schema": [
+            {
+              "id": "Candidate ID",
+              "displayName": "Candidate ID",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contacted",
+              "displayName": "contacted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_link",
+              "displayName": "calendar_event_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1872,
+        896
+      ],
+      "id": "7c86f376-01d6-4933-905a-293e9183edd1",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc",
+          "mode": "list",
+          "cachedResultName": "Master_Candidates",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FDqF4FmQ9KTKmv4jFZ21FbeRfWYHnuSzztVNkKakMtc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Candidate ID": "={{ $('Loop Over Items').item.json['Candidate ID'] }}",
+            "contacted": "YES",
+            "status": "={{ String($('Loop Over Items').item.json['ai_classification'] || '').trim().toLowerCase() === 'average' ? 'manual_review_notified' : 'rejected' }}"
+          },
+          "matchingColumns": [
+            "Candidate ID"
+          ],
+          "schema": [
+            {
+              "id": "Candidate ID",
+              "displayName": "Candidate ID",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "contacted",
+              "displayName": "contacted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        1232
+      ],
+      "id": "2a8dfc85-50c1-4b7b-a43c-c05a8d8c5c65",
+      "name": "Update contacted for avg and weak",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WeE6yZYOWS96S5T9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import re\nimport hashlib\nfrom datetime import datetime, timezone\n\nNULL_VALUES = {'', 'nan', 'none', '-', 'n/a', 'null'}\nTRUE_VALUES = {'true', 'yes', '1', 'done', 'processed'}\nRETRY_STATUSES = {'pending', 'screening_error', 'resume_error'}\n\ndef clean(value):\n    if value is None:\n        return ''\n    value = str(value).strip()\n    return '' if value.lower() in NULL_VALUES else value\n\ndef truthy(value):\n    return clean(value).lower() in TRUE_VALUES\n\ndef first_exact(data, keys):\n    for key in keys:\n        value = clean(data.get(key))\n        if value:\n            return value\n    return ''\n\ndef find_field(data, exact_keys, keywords):\n    value = first_exact(data, exact_keys)\n    if value:\n        return value\n    for key, val in data.items():\n        key_lower = str(key).lower().strip()\n        if any(keyword.lower() in key_lower for keyword in keywords):\n            val = clean(val)\n            if val:\n                return val\n    return ''\n\ndef extract_drive_file_id(url):\n    url = clean(url)\n    patterns = [\n        r'[?&]id=([^&#]+)',\n        r'/d/([^/?#]+)',\n        r'/file/d/([^/?#]+)',\n        r'open\\?id=([^&#]+)'\n    ]\n    for pattern in patterns:\n        match = re.search(pattern, url)\n        if match:\n            return match.group(1).strip()\n    if re.fullmatch(r'[A-Za-z0-9_-]{20,}', url):\n        return url\n    return ''\n\ndef candidate_id(email, role):\n    raw = f'{email.lower()}|{role.upper()}'\n    return f'{role.upper()}-{hashlib.sha256(raw.encode()).hexdigest()[:12].upper()}'\n\ntry:\n    master_rows = _('Master_Sheet').all()\nexcept Exception as exc:\n    raise Exception(f'Master sheet read failed before candidate processing: {exc}')\n\nexisting_by_key = {}\nexisting_ids = set()\nfor record in master_rows:\n    row = record.get('json', {}) if isinstance(record, dict) else getattr(record, 'json', {})\n    email = clean(row.get('email')).lower()\n    role = clean(row.get('role')).upper()\n    cid = clean(row.get('Candidate ID'))\n    if email and role:\n        existing_by_key[f'{email}|{role}'] = row\n    if cid:\n        existing_ids.add(cid)\n\nprocessed = []\nskipped = []\nseen_this_run = set()\n\nfor item in _input.all():\n    data = item.get('json', {}) if isinstance(item, dict) else getattr(item, 'json', {})\n    role = clean(data.get('role')).upper()\n    if role not in {'SWE', 'BDM'}:\n        continue\n\n    source_row_number = clean(data.get('row_number'))\n    source_processed = truthy(data.get('processed'))\n\n    if role == 'SWE':\n        name = find_field(data, ['Full Name'], ['full name', 'your name', 'name'])\n        email = find_field(data, ['Email Address', 'Email address'], ['email'])\n        resume_url = find_field(data, ['Resume / CV (PDF)', 'Resume'], ['resume', 'cv', 'upload'])\n        experience = find_field(data, ['Programming Languages'], ['programming', 'language', 'skill', 'tech', 'experience'])\n        extra_link = find_field(data, ['GitHub Profile Link'], ['github', 'portfolio'])\n    else:\n        name = find_field(data, ['Name'], ['full name', 'your name', 'name'])\n        email = find_field(data, ['Contact Email', 'Email address', 'Email Address'], ['contact email', 'email'])\n        resume_url = find_field(data, ['Resume'], ['resume', 'cv', 'upload'])\n        experience = find_field(data, ['Years of Sales Experience'], ['experience', 'sales', 'year'])\n        extra_link = find_field(data, ['LinkedIn Profile'], ['linkedin'])\n\n    email = clean(email).lower()\n    drive_file_id = extract_drive_file_id(resume_url)\n    key = f'{email}|{role}'\n\n    missing = []\n    if not name: missing.append('name')\n    if not email: missing.append('email')\n    if not resume_url: missing.append('resume_url')\n    if resume_url and not drive_file_id: missing.append('valid_drive_file_id')\n    if missing:\n        skipped.append({'email': email, 'role': role, 'reason': 'missing ' + ', '.join(missing), 'source_row_number': source_row_number})\n        continue\n\n    existing = existing_by_key.get(key)\n    if key in seen_this_run:\n        skipped.append({'email': email, 'role': role, 'reason': 'duplicate candidate in this run', 'source_row_number': source_row_number})\n        continue\n\n    if existing:\n        existing_status = clean(existing.get('status')).lower()\n        if existing_status not in RETRY_STATUSES:\n            skipped.append({'email': email, 'role': role, 'reason': f'already processed with status {existing_status or \"unknown\"}', 'source_row_number': source_row_number})\n            continue\n        cid = clean(existing.get('Candidate ID')) or candidate_id(email, role)\n    else:\n        if source_processed:\n            skipped.append({'email': email, 'role': role, 'reason': 'source row already marked processed but no retryable master record found', 'source_row_number': source_row_number})\n            continue\n        cid = candidate_id(email, role)\n        if cid in existing_ids:\n            skipped.append({'email': email, 'role': role, 'reason': 'candidate id already exists', 'source_row_number': source_row_number})\n            continue\n\n    seen_this_run.add(key)\n    existing_ids.add(cid)\n    processed.append({\n        'json': {\n            'Candidate ID': cid,\n            'name': name,\n            'email': email,\n            'role': role,\n            'experience': experience,\n            'status': 'pending',\n            'ai_score': '',\n            'ai_classification': '',\n            'ai_summary': '',\n            'ai_strengths': '',\n            'ai_concerns': '',\n            'interview_recommended': '',\n            'contacted': 'NO',\n            'calendar_event_link': '',\n            'extra_link': extra_link,\n            'resume_url': resume_url,\n            'drive_file_id': drive_file_id,\n            'workflow_status': 'NEW',\n            'source_sheet': role,\n            'source_row_number': source_row_number,\n            'error_note': '',\n            'ingested_at': datetime.now(timezone.utc).isoformat()\n        }\n    })\n\nif not processed:\n    return [{\n        'json': {\n            'workflow_status': 'NO_NEW_CANDIDATES',\n            'message': f'No valid new candidates. Skipped {len(skipped)} rows.',\n            'skipped_rows': skipped[:25]\n        }\n    }]\n\nreturn processed"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        144
+      ],
+      "id": "4704657c-3198-4ae6-aaf1-03d42366c4a7",
+      "name": "Validate & Deduplicate Candidates"
+    },
+    {
+      "parameters": {
+        "jsCode": "const status = $input.first().json.workflow_status || 'UNKNOWN';\nconst message = $input.first().json.message || 'No message';\nconsole.log(`STATUS: ${status} | MESSAGE: ${message}`);\nreturn [{ json: { stopped_reason: status, stopped_message: message } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        432
+      ],
+      "id": "fdfd9863-0329-4b84-9931-3d123823eb4f",
+      "name": "Format Stop Reason"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import json\nimport re\n\ndef get_json(item):\n    if item is None:\n        return {}\n\n    if isinstance(item, dict):\n        data = item.get('json', item)\n    else:\n        data = getattr(item, 'json', item)\n\n    if hasattr(data, 'to_py'):\n        data = data.to_py()\n\n    if isinstance(data, dict):\n        return data\n\n    return {}\n\ndef to_int(value, default=0):\n    try:\n        return int(float(value))\n    except Exception:\n        return default\n\ndef to_text_list(value):\n    if value is None:\n        return ''\n    if hasattr(value, 'to_py'):\n        value = value.to_py()\n    if isinstance(value, list):\n        return ' | '.join([str(v) for v in value if str(v).strip()])\n    return str(value)\n\ndef clean_raw_text(text):\n    text = str(text or '').strip()\n\n    # Remove reasoning blocks from reasoning models\n    text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL | re.IGNORECASE)\n\n    # Remove markdown code fences if present\n    text = text.replace('```json', '').replace('```', '').strip()\n\n    # If model returns JSON as a quoted string, unquote it\n    if text.startswith('\"') and text.endswith('\"'):\n        try:\n            text = json.loads(text)\n        except Exception:\n            pass\n\n    # Convert escaped JSON string into normal JSON text\n    text = text.replace('\\\\n', '\\n')\n    text = text.replace('\\\\\"', '\"')\n\n    return text.strip()\n\ndef parse_ai_from_text(text):\n    text = clean_raw_text(text)\n\n    # Try direct JSON parse\n    try:\n        parsed = json.loads(text)\n        if isinstance(parsed, dict):\n            return parsed\n    except Exception:\n        pass\n\n    # Try JSON object inside text\n    match = re.search(r'\\{.*\\}', text, re.DOTALL)\n    if match:\n        try:\n            parsed = json.loads(match.group(0))\n            if isinstance(parsed, dict):\n                return parsed\n        except Exception:\n            pass\n\n    return {}\n\ndef extract_ai_data(llm_json):\n    # Case 1: Structured Output Parser success\n    output = llm_json.get('output')\n    if hasattr(output, 'to_py'):\n        output = output.to_py()\n\n    if isinstance(output, dict):\n        return output\n\n    # Case 2: Basic LLM Chain returns fields directly\n    if (\n        llm_json.get('score') is not None\n        and llm_json.get('classification') is not None\n        and llm_json.get('summary') is not None\n    ):\n        return llm_json\n\n    # Case 3: Basic LLM Chain returns raw text / escaped JSON text\n    raw_text = (\n        llm_json.get('text')\n        or llm_json.get('output')\n        or llm_json.get('response')\n        or llm_json.get('result')\n        or ''\n    )\n\n    if isinstance(raw_text, dict):\n        return raw_text\n\n    return parse_ai_from_text(raw_text)\n\nai_items = _input.all()\noriginal_items = _('Validate & Deduplicate Candidates').all()\n\noutput_items = []\n\nfor index, item in enumerate(ai_items):\n    llm_json = get_json(item)\n\n    if index < len(original_items):\n        original_json = get_json(original_items[index])\n    else:\n        original_json = {}\n\n    ai_data = extract_ai_data(llm_json)\n\n    has_valid_ai = (\n        isinstance(ai_data, dict)\n        and ai_data.get('score') is not None\n        and ai_data.get('classification') is not None\n        and ai_data.get('summary') is not None\n    )\n\n    sheet_data = {}\n    for key, value in original_json.items():\n        sheet_data[key] = value\n\n    if has_valid_ai:\n        score = max(0, min(100, to_int(ai_data.get('score'))))\n\n        classification = str(ai_data.get('classification', '')).lower().strip()\n\n        # Force classification to match score\n        if score >= 75:\n            classification = 'strong'\n        elif score >= 50:\n            classification = 'average'\n        else:\n            classification = 'weak'\n\n        interview_recommended = ai_data.get('interview_recommended', classification == 'strong')\n        if isinstance(interview_recommended, str):\n            interview_recommended = interview_recommended.strip().lower() in ['true', 'yes', '1']\n\n        # Force interview recommendation to match final classification\n        interview_recommended = classification == 'strong'\n\n        sheet_data['ai_score'] = score\n        sheet_data['ai_classification'] = classification\n        sheet_data['ai_summary'] = str(ai_data.get('summary', ''))\n        sheet_data['ai_strengths'] = to_text_list(ai_data.get('key_strengths'))\n        sheet_data['ai_concerns'] = to_text_list(ai_data.get('concerns'))\n        sheet_data['interview_recommended'] = 'YES' if interview_recommended else 'NO'\n        sheet_data['status'] = 'screened'\n        sheet_data['workflow_status'] = 'SCREENED'\n        sheet_data['error_note'] = ''\n    else:\n        sheet_data['ai_score'] = ''\n        sheet_data['ai_classification'] = ''\n        sheet_data['ai_summary'] = 'AI screening failed because no valid score, classification, and summary were returned.'\n        sheet_data['ai_strengths'] = ''\n        sheet_data['ai_concerns'] = 'Missing or invalid LLM output object'\n        sheet_data['interview_recommended'] = 'NO'\n        sheet_data['status'] = 'screening_error'\n        sheet_data['workflow_status'] = 'ERROR'\n        sheet_data['error_note'] = 'Missing or invalid LLM output object'\n\n    output_items.append({\n        'json': sheet_data\n    })\n\nreturn output_items"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        128
+      ],
+      "id": "ddd20a26-7b39-4483-9ca7-2660e4d04960",
+      "name": "Parse AI Screening Result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Master_Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get BDM Applications",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "get SWE Applications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get SWE Applications": {
+      "main": [
+        [
+          {
+            "node": "ROLE-SWE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get BDM Applications": {
+      "main": [
+        [
+          {
+            "node": "ROLE-BDM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROLE-SWE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROLE-BDM": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Validate & Deduplicate Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master_Sheet": {
+      "main": [
+        [
+          {
+            "node": "Validate & Deduplicate Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Stop Reason",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Screening Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Updation in Master Sheet": {
+      "main": [
+        [
+          {
+            "node": "Switch Source Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Source Sheet": {
+      "main": [
+        [
+          {
+            "node": "Mark SWE Source Processed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark BDM Source Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Master-Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master-Sheet": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Rejection Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Average Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "main": [
+        [
+          {
+            "node": "Build Interview Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Interview Email": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Average Email": {
+      "main": [
+        [
+          {
+            "node": "Update contacted for avg and weak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Rejection Email": {
+      "main": [
+        [
+          {
+            "node": "Update contacted for avg and weak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update contacted for avg and weak": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Interview Email": {
+      "main": [
+        [
+          {
+            "node": "Send Interview Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Deduplicate Candidates": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Screening Result": {
+      "main": [
+        [
+          {
+            "node": "Updation in Master Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "73c3737c-081b-4e6a-90f8-6d5a0a14111a",
+  "meta": {
+    "instanceId": "332544d0b260c995731e7bfd5244029efd11610acc151533621c1c1bb570eba4"
+  },
+  "id": "fH8MbtT3ZAUFm9xn",
+  "tags": []
+}
